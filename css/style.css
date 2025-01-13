@@ -53,20 +53,21 @@
   justify-content: space-between;
   position: fixed;
   z-index: 1;
-  padding: 1rem;
-}
-.navbar-logo {
-  font-size: 42px;
-  visibility: hidden;
-}
-.navbar-menu {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 1rem 2rem;
   column-gap: 1rem;
 }
 .menu-button {
-  display: none;
+  visibility: hidden;
+  transition: transform 0.3s ease;
+}
+.music-button {
+  visibility: hidden;
+  transition: transform 0.3s ease;
+}
+.menu-button:hover,
+.music-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 /* Home section style */
 #home-sec,
@@ -83,19 +84,19 @@
 }
 @keyframes changeBackground {
   0% {
-    background-image: url(../css/assets/images/click-the-color-bg-red.jpg);
+    background-image: url(../assets/images/click-the-color-bg-red.jpg);
   }
   25% {
-    background-image: url(../css/assets/images/click-the-color-bg-orange.jpg);
+    background-image: url(../assets/images/click-the-color-bg-orange.jpg);
   }
   50% {
-    background-image: url(../css/assets/images/click-the-color-bg-yellow.jpg);
+    background-image: url(../assets/images/click-the-color-bg-yellow.jpg);
   }
   75% {
-    background-image: url(../css/assets/images/click-the-color-bg-green.jpg);
+    background-image: url(../assets/images/click-the-color-bg-green.jpg);
   }
   100% {
-    background-image: url(../css/assets/images/click-the-color-bg-blue.jpg);
+    background-image: url(../assets/images/click-the-color-bg-blue.jpg);
   }
 }
 .game-title {
@@ -392,6 +393,7 @@
   display: none;
   height: 100vh;
   margin: auto;
+  padding-top: 3rem;
 }
 .board-row-1 {
   display: flex;
@@ -463,8 +465,11 @@
     text-align: center;
     margin: 2rem 0;
   }
+  .board-color-name > h1 {
+    font-size: 46px;
+  }
   .board-menu {
-    padding: 1rem;
+    padding: 1rem 0;
   }
   .board-menu > .button {
     padding: 8px 16px;

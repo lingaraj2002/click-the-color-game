@@ -37,10 +37,10 @@ var selectedColor = [];
 var questionColor = [];
 var score = 0;
 var life = 3;
-var time = 60;
-var pauseTimer = false;
 let currentTimer = null;
-let bgm = true;
+let time = 60;
+let pauseTimer = false;
+const navbar = document.getElementById("navbar");
 const musicBtn = document.querySelector(".music-button");
 const musicImage = document.querySelector(".music-img");
 const menuBtn = document.querySelector(".menu-button");
@@ -66,44 +66,21 @@ const quitBtn = document.querySelectorAll(".quit-btn");
 const gameOverSection = document.getElementById("game-over-sec");
 const gameOverScoreSpan = document.querySelector(".game-over-score-span");
 const gameTitle = document.querySelector(".game-title");
-const gameBackgroundAudio = new Audio(
-  "../css/assets/audio/game-background-music.mp3"
-);
-const buttonClickAudio = new Audio(
-  "../css/assets/audio/button-click-audio.mp3"
-);
-const correctAnswerAudio = new Audio(
-  "../css/assets/audio/correct-answer-audio.wav"
-);
-const wrongAnswerAudio = new Audio(
-  "../css/assets/audio/wrong-answer-audio.mp3"
-);
-const gameOverNegativeAudio = new Audio(
-  "../css/assets/audio/game-over-negative-audio.mp3"
-);
-const gameOverPositiveAudio = new Audio(
-  "../css/assets/audio/game-over-positive-audio.mp3"
-);
-
-// Function for autoplay music
-const musicPlay = () => {
-  gameBackgroundAudio.volume = 0.5;
-  gameBackgroundAudio.loop = true;
-  gameBackgroundAudio.play();
-};
-
-musicPlay();
+const bgmAudio = document.querySelector(".audio-bgm");
+const buttonClickAudio = document.querySelector(".btn-audio");
+const correctAnswerAudio = document.querySelector(".correct-ans-audio");
+const wrongAnswerAudio = document.querySelector(".wrong-ans-audio");
+const gameOverNegativeAudio = document.querySelector(".game-over-neg-audio");
+const gameOverPositiveAudio = document.querySelector(".game-over-pass-audio");
 
 // Function for bgm pause & play
 musicBtn.onclick = function () {
-  if (bgm) {
-    gameBackgroundAudio.pause();
-    musicImage.src = "../css/assets/icons/click-the-color-mute-icon.svg";
-    bgm = false;
+  if (bgmAudio.muted) {
+    bgmAudio.muted = false;
+    musicImage.src = "../assets/icons/click-the-color-unmute-icon.svg";
   } else {
-    gameBackgroundAudio.play();
-    musicImage.src = "../css/assets/icons/click-the-color-unmute-icon.svg";
-    bgm = true;
+    bgmAudio.muted = true;
+    musicImage.src = "../assets/icons/click-the-color-mute-icon.svg";
   }
 };
 
@@ -118,6 +95,7 @@ const handleGameOver = () => {
     gameOverSection.style.display = "grid";
     gameBoardSection.style.display = "none";
     gameOverScoreSpan.innerHTML = score;
+    menuBtn.style.visibility = "hidden";
   } catch (error) {
     console.log(error);
   }
@@ -126,42 +104,38 @@ const handleGameOver = () => {
 // Function for game time countdown
 function handleGameTimer() {
   try {
-    console.log(currentTimer, "currentTimer 1");
-    // Reset the timer display
+    console.log(currentTimer, "currentTimer before starting");
     timerDisplay.style.color = "#000000";
     timerDisplay.textContent = time;
-    // Clear any existing timer
-    if (currentTimer) {
-      // clearInterval(currentTimer);
-      // currentTimer = null;
-      console.log("closetimer 1");
+    if (currentTimer !== null) {
+      clearInterval(currentTimer);
+      currentTimer = null;
+      console.log("Previous timer cleared");
     }
     // If time is already 0, handle game over immediately
     if (time <= 0) {
-      // handleGameOver();
-      // return;
+      handleGameOver();
+      return;
     }
     // Start a new timer
     currentTimer = setInterval(() => {
-      console.log(currentTimer, "currentTimer 1");
-      if (pauseTimer) {
+      console.log(currentTimer, "currentTimer running");
+      if (!pauseTimer) {
         if (time > 0) {
           time--;
-          // Update timer display
           timerDisplay.textContent = time;
-          // Change color when time is running out
           if (time <= 10) {
             timerDisplay.style.color = "#ff0000";
           }
         } else {
           // Stop the timer when time reaches 0
-          // clearInterval(currentTimer);
-          // currentTimer = null;
+          clearInterval(currentTimer);
+          currentTimer = null;
           handleGameOver();
-          console.log("closetimer 2");
+          console.log("Timer stopped because time is 0");
         }
       }
-      console.log(time, "time");
+      console.log(time, "time remaining");
     }, 1000);
   } catch (error) {
     console.error(error);
@@ -186,6 +160,7 @@ const handleNavigateRulesPage = () => {
   try {
     homeSection.style.display = "none";
     rulesSection.style.display = "grid";
+    musicBtn.style.visibility = "visible";
   } catch (error) {
     console.log(error);
   }
@@ -194,6 +169,7 @@ const handleNavigateRulesPage = () => {
 // Function for show the loader when click the landing page
 homeSection.onclick = function () {
   try {
+    bgmAudio.play();
     tabShowText.style.display = "none";
     for (let i = 0; i < gameLoader.length; i++) {
       gameLoader[i].style.display = "flex";
@@ -297,7 +273,7 @@ gameBoardOption.forEach((div) => {
 });
 
 // Function for common game setup
-function handleStartGame(isFirstStart) {
+function handleStartGame() {
   try {
     homeSection.style.display = "none";
     rulesSection.style.display = "none";
@@ -305,8 +281,7 @@ function handleStartGame(isFirstStart) {
     gameOverSection.style.display = "none";
     popupContainer.style.display = "none";
     // Start the game timer
-    currentTimer = null;
-    handleGameTimer(isFirstStart);
+    handleGameTimer();
     // Reset game state
     score = 0;
     scoreBox.innerHTML = score;
@@ -322,6 +297,7 @@ function handleStartGame(isFirstStart) {
 
 // Function for start button onclick
 startBtn.onclick = function () {
+  menuBtn.style.visibility = "visible";
   buttonClickAudio.play();
   handleStartGame();
 };
@@ -353,9 +329,14 @@ resumeBtn.onclick = function () {
 
 // Function for retry button onclick
 retryBtn.forEach((button) => {
-  buttonClickAudio.play();
   button.onclick = function () {
-    handleStartGame();
+    try {
+      menuBtn.style.visibility = "visible";
+      buttonClickAudio.play();
+      handleStartGame();
+    } catch (error) {
+      console.log(error);
+    }
   };
 });
 

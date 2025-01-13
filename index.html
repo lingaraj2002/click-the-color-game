@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="assets/icons/click-the-color-favicon.svg" />
     <title>Click The Color Game</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,21 +15,15 @@
   </head>
   <body>
     <section id="navbar">
-      <div class="navbar-logo">CTC</div>
-      <div class="navbar-menu">
-        <div class="music-button">
-          <img
-            class="music-img"
-            src="css/assets/icons/click-the-color-unmute-icon.svg"
-            alt="Music icon"
-          />
-        </div>
-        <div class="menu-button">
-          <img
-            src="css/assets/icons/click-the-color-menu-icon.svg"
-            alt="Menu icon"
-          />
-        </div>
+      <div class="music-button">
+        <img
+          class="music-img"
+          src="assets/icons/click-the-color-unmute-icon.svg"
+          alt="Music icon"
+        />
+      </div>
+      <div class="menu-button">
+        <img src="assets/icons/click-the-color-menu-icon.svg" alt="Menu icon" />
       </div>
     </section>
     <section id="home-sec">
@@ -72,7 +67,7 @@
         </ul>
         <button class="start-btn button">
           start<img
-            src="css/assets/icons/click-the-color-play-icon.svg"
+            src="assets/icons/click-the-color-play-icon.svg"
             alt="Play icon"
           />
         </button>
@@ -92,19 +87,19 @@
             <img
               class="heart"
               id="heart1"
-              src="css/assets/icons/click-the-color-heart.svg"
+              src="assets/icons/click-the-color-heart.svg"
               alt="Heart icon"
             />
             <img
               class="heart"
               id="heart2"
-              src="css/assets/icons/click-the-color-heart.svg"
+              src="assets/icons/click-the-color-heart.svg"
               alt="Heart icon"
             />
             <img
               class="heart"
               id="heart3"
-              src="css/assets/icons/click-the-color-heart.svg"
+              src="assets/icons/click-the-color-heart.svg"
               alt="Heart icon"
             />
           </div>
@@ -141,14 +136,14 @@
         <button class="button retry-btn">
           Retry
           <img
-            src="css/assets/icons/click-the-color-retry-icon.svg"
+            src="assets/icons/click-the-color-retry-icon.svg"
             alt="Retry icon"
           />
         </button>
         <button class="button quit-btn">
           Quit
           <img
-            src="css/assets/icons/click-the-color-quit-icon.svg"
+            src="assets/icons/click-the-color-quit-icon.svg"
             alt="Quit icon"
           />
         </button>
@@ -160,40 +155,64 @@
         <button class="button resume-btn">
           Resume
           <img
-            src="css/assets/icons/click-the-color-play-icon.svg"
+            src="assets/icons/click-the-color-play-icon.svg"
             alt="Resume icon"
           />
         </button>
         <button class="button retry-btn">
           Retry
           <img
-            src="css/assets/icons/click-the-color-retry-icon.svg"
+            src="assets/icons/click-the-color-retry-icon.svg"
             alt="Retry icon"
           />
         </button>
         <button class="button quit-btn">
           Quit
           <img
-            src="css/assets/icons/click-the-color-quit-icon.svg"
+            src="assets/icons/click-the-color-quit-icon.svg"
             alt="Quit icon"
           />
         </button>
       </div>
       <div class="popup-row-correct">
         <img
-          src="css/assets/icons/click-the-color-tick-circle.svg"
+          src="assets/icons/click-the-color-tick-circle.svg"
           alt="Resume icon"
         />
         <span>Correct</span>
       </div>
       <div class="popup-row-wrong">
         <img
-          src="css/assets/icons/click-the-color-close-circle.svg"
+          src="assets/icons/click-the-color-close-circle.svg"
           alt="Resume icon"
         />
         <span>Wrong</span>
       </div>
     </div>
+    <audio class="audio-bgm" loop>
+      <source src="assets/audio/game-background-music.mp3" type="audio/mp3" />
+    </audio>
+    <audio class="btn-audio">
+      <source src="assets/audio/button-click-audio.mp3" type="audio/mp3" />
+    </audio>
+    <audio class="correct-ans-audio">
+      <source src="assets/audio/correct-answer-audio.wav" type="audio/wav" />
+    </audio>
+    <audio class="wrong-ans-audio">
+      <source src="assets/audio/wrong-answer-audio.mp3" type="audio/mp3" />
+    </audio>
+    <audio class="game-over-neg-audio">
+      <source
+        src="assets/audio/game-over-negative-audio.mp3"
+        type="audio/mp3"
+      />
+    </audio>
+    <audio class="game-over-pass-audio">
+      <source
+        src="assets/audio/game-over-positive-audio.mp3"
+        type="audio/mp3"
+      />
+    </audio>
     <script src="js/main.js"></script>
   </body>
 </html>
