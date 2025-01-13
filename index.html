@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Click The Color Game</title>
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,7 +13,25 @@
     />
   </head>
   <body>
-    <section id="home-sec" onclick="startTab()">
+    <section id="navbar">
+      <div class="navbar-logo">CTC</div>
+      <div class="navbar-menu">
+        <div class="music-button">
+          <img
+            class="music-img"
+            src="css/assets/icons/click-the-color-unmute-icon.svg"
+            alt="Music icon"
+          />
+        </div>
+        <div class="menu-button">
+          <img
+            src="css/assets/icons/click-the-color-menu-icon.svg"
+            alt="Menu icon"
+          />
+        </div>
+      </div>
+    </section>
+    <section id="home-sec">
       <div class="game-title">
         <div class="game-title-top">
           <span class="color-1">c</span>
@@ -33,6 +51,78 @@
           <span class="color-10">r</span>
         </div>
       </div>
+      <div class="loading-cntnr">
+        <p id="tabShowText">Tab to start the game</p>
+        <div class="game-loader">
+          <div class="game-loader-fill-1"></div>
+          <div class="game-loader-fill-2"></div>
+        </div>
+      </div>
+    </section>
+    <section id="rules-sec">
+      <div class="rules-cntnr">
+        <h1>Rules & Regulations</h1>
+        <ul>
+          <li>The game time is 60 sec. so, “Click fast! think faster!!”.</li>
+          <li>Only you have three wrong clicks allowed “Choose carefully”.</li>
+          <li>
+            If the game is over your score will be show and you can retry or
+            quit the game.
+          </li>
+        </ul>
+        <button class="start-btn button">
+          start<img
+            src="css/assets/icons/click-the-color-play-icon.svg"
+            alt="Play icon"
+          />
+        </button>
+      </div>
+    </section>
+    <section id="board-sec">
+      <div class="board-row-1">
+        <div class="board-score">
+          <p>Score : <span id="score"></span></p>
+          <span class="timer"></span>
+        </div>
+        <div class="board-color-name">
+          <h1 id="color-name"></h1>
+        </div>
+        <div class="board-menu">
+          <div class="board-life">
+            <img
+              class="heart"
+              id="heart1"
+              src="css/assets/icons/click-the-color-heart.svg"
+              alt="Heart icon"
+            />
+            <img
+              class="heart"
+              id="heart2"
+              src="css/assets/icons/click-the-color-heart.svg"
+              alt="Heart icon"
+            />
+            <img
+              class="heart"
+              id="heart3"
+              src="css/assets/icons/click-the-color-heart.svg"
+              alt="Heart icon"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="board-row-2">
+        <div class="board-col" id="a"></div>
+        <div class="board-col" id="b"></div>
+        <div class="board-col" id="c"></div>
+        <div class="board-col" id="d"></div>
+        <div class="board-col" id="e"></div>
+        <div class="board-col" id="f"></div>
+      </div>
+    </section>
+    <section id="game-over-sec">
+      <p class="game-over-score">
+        Your Score : <span class="game-over-score-span"></span>
+      </p>
       <div class="game-over-title">
         <div class="game-title-top">
           <span class="color-1">g</span>
@@ -47,102 +137,63 @@
           <span class="color-9">r</span>
         </div>
       </div>
-      <div class="loading-cntnr">
-        <p id="tabShowText">Tab to start the game</p>
-        <div class="game-loader">
-          <div class="game-loader-fill-1"></div>
-          <div class="game-loader-fill-2"></div>
-        </div>
-      </div>
       <div class="game-over-btns">
-        <button class="button retry-btn" onclick="handleNavigate('retry')">
+        <button class="button retry-btn">
           Retry
           <img
-            src="/css/assets/icons/click-the-color-retry-icon.svg"
+            src="css/assets/icons/click-the-color-retry-icon.svg"
             alt="Retry icon"
           />
         </button>
-        <button class="button quit-btn" onclick="handleNavigate('home')">
+        <button class="button quit-btn">
           Quit
           <img
-            src="/css/assets/icons/click-the-color-quit-icon.svg"
+            src="css/assets/icons/click-the-color-quit-icon.svg"
             alt="Quit icon"
           />
         </button>
       </div>
-    </section>
-    <section id="rules-sec">
-      <div class="rules-cntnr">
-        <h1>Rules & Regulations</h1>
-        <ul>
-          <li>The game time is 60 sec. so, “Click fast! think faster!!”.</li>
-          <li>Only you have three wrong clicks allowed “Choose carefully”.</li>
-          <li>
-            If the game is over your score will be show and you can retry or
-            quit the game.
-          </li>
-        </ul>
-        <button class="start-btn button" onclick="handleNavigate('start')">
-          start<img
-            src="/css/assets/icons/click-the-color-play-icon.svg"
-            alt="Play icon"
-          />
-        </button>
-      </div>
-    </section>
-    <section id="board-sec">
-      <div class="board-row-1">
-        <div class="board-score">
-          <p>Score : <span id="score">00</span></p>
-        </div>
-        <div class="board-color-name">
-          <h1 id="color-name">COLOR</h1>
-        </div>
-        <div class="board-menu">
-          <button class="button" onclick="handleNavigate('menu')">
-            Menu
-            <img
-              src="/css/assets/icons/click-the-color-menu-icon.svg"
-              alt="Menu icon"
-            />
-          </button>
-          <div class="board-life">
-            <img
-              src="/css/assets/icons/click-the-color-heart.svg"
-              alt="Heart icon"
-            />
-            <img
-              src="/css/assets/icons/click-the-color-heart.svg"
-              alt="Heart icon"
-            />
-            <img
-              src="/css/assets/icons/click-the-color-heart.svg"
-              alt="Heart icon"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="board-row-2"></div>
     </section>
     <div id="popup-cntnr">
       <div class="popup-row">
         <p>Do you want to quit ?</p>
-        <button class="button resume-btn" onclick="handleNavigate('resume')">
+        <button class="button resume-btn">
           Resume
           <img
-            src="/css/assets/icons/click-the-color-play-icon.svg"
+            src="css/assets/icons/click-the-color-play-icon.svg"
             alt="Resume icon"
           />
         </button>
-        <button class="button quit-btn" onclick="handleNavigate('quit')">
+        <button class="button retry-btn">
+          Retry
+          <img
+            src="css/assets/icons/click-the-color-retry-icon.svg"
+            alt="Retry icon"
+          />
+        </button>
+        <button class="button quit-btn">
           Quit
           <img
-            src="/css/assets/icons/click-the-color-quit-icon.svg"
+            src="css/assets/icons/click-the-color-quit-icon.svg"
             alt="Quit icon"
           />
         </button>
       </div>
+      <div class="popup-row-correct">
+        <img
+          src="css/assets/icons/click-the-color-tick-circle.svg"
+          alt="Resume icon"
+        />
+        <span>Correct</span>
+      </div>
+      <div class="popup-row-wrong">
+        <img
+          src="css/assets/icons/click-the-color-close-circle.svg"
+          alt="Resume icon"
+        />
+        <span>Wrong</span>
+      </div>
     </div>
-    <script src="/js/main.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
