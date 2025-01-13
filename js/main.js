@@ -104,13 +104,11 @@ const handleGameOver = () => {
 // Function for game time countdown
 function handleGameTimer() {
   try {
-    console.log(currentTimer, "currentTimer before starting");
     timerDisplay.style.color = "#000000";
     timerDisplay.textContent = time;
     if (currentTimer !== null) {
       clearInterval(currentTimer);
       currentTimer = null;
-      console.log("Previous timer cleared");
     }
     // If time is already 0, handle game over immediately
     if (time <= 0) {
@@ -119,7 +117,6 @@ function handleGameTimer() {
     }
     // Start a new timer
     currentTimer = setInterval(() => {
-      console.log(currentTimer, "currentTimer running");
       if (!pauseTimer) {
         if (time > 0) {
           time--;
@@ -132,10 +129,8 @@ function handleGameTimer() {
           clearInterval(currentTimer);
           currentTimer = null;
           handleGameOver();
-          console.log("Timer stopped because time is 0");
         }
       }
-      console.log(time, "time remaining");
     }, 1000);
   } catch (error) {
     console.error(error);
@@ -169,6 +164,7 @@ const handleNavigateRulesPage = () => {
 // Function for show the loader when click the landing page
 homeSection.onclick = function () {
   try {
+    bgmAudio.volume = "0.5";
     bgmAudio.play();
     tabShowText.style.display = "none";
     for (let i = 0; i < gameLoader.length; i++) {
